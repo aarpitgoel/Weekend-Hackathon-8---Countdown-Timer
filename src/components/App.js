@@ -1,11 +1,10 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/App.css";
 
 const App = () => {
-  // write your code here
-  const [remTime, setRemTime] = useState(0);
-  function handleKeyDown(event) {
-    console.log("in");
+  const [remTime, setRemTime] = React.useState(0);
+
+  const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       clearInterval(interval);
       if (isNaN(event.target.value)) {
@@ -14,16 +13,15 @@ const App = () => {
       }
       setRemTime(parseInt(event.target.value));
     }
-  }
+    return;
+  };
 
   let interval = setInterval(() => {
     clearInterval(interval);
     if (remTime <= 0) {
       return;
     }
-    setRemTime((remTime) => {
-      remTime - 1;
-    });
+    setRemTime((remTime) => remTime - 1);
   }, 1000);
 
   return (
